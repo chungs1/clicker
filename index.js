@@ -5,6 +5,7 @@ if(isNaN(timesClickedStr)) {
 	timesClickedStr = "0";
 }
 console.log(timesClickedStr);
+var timesClicked = parseInt(timesClickedStr);
 
 function refresh() {
 
@@ -24,15 +25,18 @@ function main() {
 	}
 }
 
+function save() {
+	console.log(timesClicked);
+	timesCliked = timesClicked.toString();
+	window.localStorage.setItem("timesClicked", timesClicked);
+	console.log(window.localStorage.setItem("timesClicked", timesClicked));
+
+}
+
 function clicked() {
-	var oldClicks = parseInt(timesClickedStr);
-	console.log(oldClicks);
-	oldClicks++;
-	oldClicks = oldClicks.toString();
-	window.localStorage.setItem("timesClicked", oldClicks);
-	console.log(window.localStorage.setItem("timesClicked", oldClicks));
-	$("#numClicks").innerHTML = "";
-	$("#numClicks").innerHTML = oldClicks;
+	timesClicked++;
+	$("#numClicks").html(timesClicked);
+	//$("#numClicks").innerHTML = timesClicked;
 }
 
 $(document).ready(function() {
@@ -40,4 +44,7 @@ $(document).ready(function() {
 	$("#click").click(function() {
 		clicked();
 	});
+	$("#save").click(function() {
+		save();
+	})
 })
